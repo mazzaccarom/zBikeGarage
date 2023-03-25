@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bikes</title>
+  <style>
+    body {
+      #background-image: url(<%= asset_path "nomad1.jpg" %>);
+      background-color: #222;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      font-size: 24px;
+      text-align: left;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+    nav {
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .nav-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .nav-links li {
+      margin: 0 10px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+    }
+    
+    .bike-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+    
+    .bike-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+    
+    .rides {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    zBikeGarage
+  </header>
+
+  <nav>
+    <ul class="nav-links">
+      <li><%= link_to "Bikes", bikes_path %></li>
+      <li><%= link_to "Add New Bike", new_bike_path %></li>
+      <li><%= link_to "Rides", rides_path %></li>
+      <li><%= link_to "Add New Ride", new_ride_path %></li>
+      <li><%= link_to "Link Strava Rides-coming soon"%></li>
+      <li><%= link_to "Ride Meet Up-coming soon"%></li>
+      <li><%= link_to "Buy/Sell-coming soon" %></li>
+      <% if user_signed_in? %>
+      <li>
+        <%= form_with url: destroy_user_session_path, method: :delete do |form| %>
+          <%= form.submit 'Log out' %>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </nav>
+
+  <div class="container">
+  <div id="<%= dom_id bike %>" class="bike-container <%= cycle('odd-bike', 'even-bike') %>">
+    <div class="bike-detail">
+      <% if bike.hours >= 30 %>
+        <div style="width: 100%; color: red">Suspension service needed!</div>
+      <% end %>
+      <p>
+        <%= bike.year %> <%= bike.make %> <%= bike.model %> <%= bike.size %> <strong>Miles:</strong><%= bike.miles %> <strong>Hours:</strong><%= bike.hours %>
+        <%= link_to "Edit Bike", edit_bike_path(@bike) %> 
+      </p>
+    </div>
+  </div>
+  <div class="bike-image">
+    <% if bike.bike_image.attached? %>
+      <%= image_tag(bike.bike_image) %>
+    <% else %>
+      <p>No image available</p>
+    <% end %>
+  </div>
+  <div class="rides">
+    <p>
+      <strong>Rides:</strong>
+      <% bike.rides.each do |ride| %>
+        <br><%= link_to ride.date, ride %> <%= ride.location %> <%= ride.miles %> miles <%= ride.hours %> hours
+      <% end %>
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

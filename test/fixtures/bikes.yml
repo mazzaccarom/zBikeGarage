@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bike_image: MyString
+  year: MyString
+  make: MyString
+  model: MyString
+  size: MyString
+  miles: 9.99
+  hours: 9.99
+
+two:
+  bike_image: MyString
+  year: MyString
+  make: MyString
+  model: MyString
+  size: MyString
+  miles: 9.99
+  hours: 9.99

@@ -1,0 +1,135 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      font-size: 24px;
+      text-align: left;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+    
+    .nav-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: #f5f5f5;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 60px; /* Adjust this value to fit your design */
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+    
+  .nav-links li {
+    margin: 0;
+    padding: 0.5rem 1rem;
+  }
+
+  .nav-links li:hover {
+    background-color: #ddd;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+  }
+
+
+  .sidebar-container {
+    text-align: center;
+    width: 25%;
+    background-color: #f5f5f5;
+    padding: 1rem 0.5rem;
+  }
+
+  .even-bike {
+    background-color: #f5f5f5;
+  }
+
+  .odd-bike {
+    background-color: #ffffff;
+  }
+
+  .bike-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+  
+  .bike-image img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+  
+  .bike-details {
+    flex-grow: 1;
+  }
+
+  .bike-container {
+    padding: 1rem;
+  }
+
+  .container-with-bg {
+    background-image: url("toolwall.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .ride-info p {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  .rides-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .rides-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .ride {
+    margin-bottom: 5px;
+  }
+  
+  
