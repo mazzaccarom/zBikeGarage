@@ -1,0 +1,16 @@
+<ul class="nav-links">
+<li><%= link_to "Bikes", bikes_path, style: "border: none; background-color: transparent; color: inherit; cursor: pointer; font-weight: bold; font-family: Arial; font-size: 18px; text-decoration: none;" %></li>
+<li><%= link_to "Add Bike", new_bike_path, style: "border: none; background-color: transparent; color: inherit; cursor: pointer; font-weight: bold; font-family: Arial; font-size: 18px; text-decoration: none;" %></li>
+<li><%= link_to "Rides", rides_path, style: "border: none; background-color: transparent; color: inherit; cursor: pointer; font-weight: bold; font-family: Arial; font-size: 18px; text-decoration: none;" %></li>
+<li><%= link_to "Link Strava Rides-coming soon", stravas_path, style: "border: none; background-color: transparent; color: inherit; cursor: pointer; font-weight: bold; font-family: Arial; font-size: 18px; text-decoration: none;" %></li>
+<li><%= link_to "Ride Meet Up-coming soon", meetups_path, style: "border: none; background-color: transparent; color: inherit; cursor: pointer; font-weight: bold; font-family: Arial; font-size: 18px; text-decoration: none;" %></li>
+<li><%= link_to "Buy/Sell-coming soon", buysells_path, style: "border: none; background-color: transparent; color: inherit; cursor: pointer; font-weight: bold; font-family: Arial; font-size: 18px; text-decoration: none;" %></li>
+<% if user_signed_in? %>
+<li>
+<%= form_with url: destroy_user_session_path, method: :delete do |form| %>
+  <%= form.submit 'Log out', style: "border: none; background-color: transparent; color: inherit; cursor: pointer; font-weight: bold; font-family: Arial; font-size: 18px;" %>
+<% end %>
+</li>
+<% end %>
+</ul>
+

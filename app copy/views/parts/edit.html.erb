@@ -1,0 +1,45 @@
+<p style="color: green"><%= notice %></p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>zBikeGarage</title>
+</head>
+
+  <style>
+    body {
+      background-image: url(<%= asset_path "trail.jpg" %>);
+    }
+    
+  </style>
+
+  <body>
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
+
+    <nav>
+      <%= render 'layouts/navbar' %>
+    </nav>
+
+    <div class="outer-box">
+      <h1>Edit Component</h1>
+        <div class="container">
+          <%= render "form", part: @part %>
+        <br>
+    </div>
+    
+    </div>
+    <div class="sidebar-container-right">
+      <%= render 'layouts/sidebarright' %>
+    </div>
+
+    <div class="sidebar-container-left">
+      <%= render 'layouts/sidebarleft' %>
+    </div>
+    
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
+
+  </body>
+</html> 

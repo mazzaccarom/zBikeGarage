@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>zBikeGarage</title>
+</head>
+
+<style>
+  body {
+    background-image: url(<%= asset_path "trail.jpg" %>);
+  }
+
+  .container {
+    text-align: left;
+  }
+
+  .centered {
+  text-align: center;
+  }
+
+</style>
+
+<body>
+  <header>
+    <%= render 'layouts/header' %>
+  </header>
+
+  <nav>
+    <%= render 'layouts/navbar' %>
+  </nav>
+
+  <div class="container">
+    <div id="rides">
+      <div class="centered">
+        <strong>Rides Summary:</strong>
+        <%= @rides.sum(:miles) %> miles <%= @rides.sum(:hours) %> hours
+        <% week_start = Date.current.beginning_of_week %>
+        <% week_end = Date.current.end_of_week %>
+        <% week_rides = @rides.where(date: week_start..week_end) %><br>
+        <strong>Weekly Summary:</strong>
+        Week of <%= week_start.strftime('%m/%d/%Y') %>:
+        <%= week_rides.sum(:miles) %> miles <%= week_rides.sum(:hours) %> hours<br><br>
+      </div>  
+      <% @rides.sort_by(&:date).reverse_each do |ride| %>
+        <%= link_to ride.date, ride %> <strong>Location:</strong><%= ride.location %> <strong>Miles:</strong><%= ride.miles %> <strong>Hours:</strong><%= ride.hours %> <strong>Bike:</strong><%= ride.bike.make %> <%= ride.bike.model %><br>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="sidebar-container-right">
+    <%= render 'layouts/sidebarright' %>
+  </div>
+
+  <div class="sidebar-container-left">
+    <%= render 'layouts/sidebarleft' %>
+  </div>
+  
+  <footer>
+    <%= render 'layouts/footer' %>
+  </footer>
+
+</body>
+</html> 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>  
+  </head>
+  <style>
+    body {
+      background-image: url(<%= asset_path "closed.jpg" %>);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .content {
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      color: black;
+      background-color: rgba(245, 245, 245, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .content p:first-of-type {
+        font-size: 36px;
+        font-weight: bold;
+    }
+  </style>
+  <body>
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
+    <div class="content">
+      <%= render 'layouts/about' %>
+    </div>
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
+  </body>
+</html>

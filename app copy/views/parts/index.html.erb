@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>zBikeGarage</title>
+</head>
+
+<style>
+  body {
+    background-image: url(<%= asset_path "trail.jpg" %>);
+  }
+</style>
+
+  <body>
+
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
+
+    <nav>
+      <%= render 'layouts/navbar' %>
+    </nav>
+
+    <div class="container">
+      <div id="parts">
+        <% @parts.each do |part| %>
+          <%= link_to part.part_type, part %> <%= part.brand %> <%= part.model %> <%= part.year %> <br>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="sidebar-container-right">
+        <%= render 'layouts/sidebarright' %>
+    </div>
+
+    <div class="sidebar-container-left">
+      <%= render 'layouts/sidebarleft' %>
+    </div>
+    
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
+
+  </body>
+</html> 
