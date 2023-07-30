@@ -1,100 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Log in</title>
+  <title>Log in</title>  
+</head>
+
   <style>
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      font-family: Arial, sans-serif;
       background-image: url(<%= asset_path "closed.jpg" %>);
-      background-size: cover;
-      background-position: center;
     }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-
-    .login-box {
-      width: 350px;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    header {
-      background-color: #333;
-      color: #fff;
-      padding: 15px;
-      font-size: 24px;
-      text-align: left;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1;
-    }
-
-    .field {
-  margin: 10px 0;
-  text-align: left;
-  width: 100%;
-}
-
-.actions {
-  text-align: center;
-}
   </style>
-</head>
-<body>
-  <header>
-    zBikeGarage
-  </header>
 
-  <div class="login-box">
-    <h1>Log in</h1>
+  <body>
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
 
-    <div class="container">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
+    <div class="login-box">
+      <h1>Log in</h1>
 
-        <div class="field">
-          <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
-        </div>
-
-        <% if devise_mapping.rememberable? %>
+      <div class="container">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password" %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.submit "Log in" %>
           </div>
         <% end %>
+      </div>
 
-        <div class="actions">
-          <%= f.submit "Log in" %>
-        </div>
-      <% end %>
+      <%= render "devise/shared/links" %>
     </div>
 
-    <%= render "devise/shared/links" %>
-  </div>
-</body>
-</html>
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
+
+  </body>
+</html> 
 
 

@@ -46,6 +46,7 @@ gem 'devise'
 gem 'active_storage_db'
 
 
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

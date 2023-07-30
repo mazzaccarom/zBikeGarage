@@ -1,117 +1,63 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>zBikeGarage</title>
-
 </head>
+
+<style>
+    body {
+      background-image: url(<%= asset_path "toolwall.jpg" %>);
+    }
+</style>
+
 <body>
   <header>
-    zBikeGarage
+    <%= render 'layouts/header' %>
   </header>
 
   <nav>
-    <ul class="nav-links">
-      <li><%= link_to "Bikes", bikes_path %></li>
-      <li><%= link_to "Add New Bike", new_bike_path %></li>
-      <li><%= link_to "Rides", rides_path %></li>
-      <li><%= link_to "Add New Ride", new_ride_path %></li>
-      <li><%= link_to "Link Strava Rides-coming soon"%></li>
-      <li><%= link_to "Ride Meet Up-coming soon"%></li>
-      <li><%= link_to "Buy/Sell-coming soon" %></li>
-      <% if user_signed_in? %>
-      <li>
-        <%= form_with url: destroy_user_session_path, method: :delete do |form| %>
-          <%= form.submit 'Log out' %>
-        <% end %>
-      </li>
-<% end %>
-    </ul>
+    <%= render 'layouts/navbar' %>
   </nav>
-</header>
-<div class="container-with-bg">
-<h1>Bikes</h1>
-<div class="container" style="margin-left: 10%; margin-top: 80px;">
-  <div id="bikes">
-    <% @bikes.each_with_index do |bike| %>
-      <div class="bike-container <%= cycle('odd-bike', 'even-bike') %>">
-        <% if bike.bike_image.attached? %>
-          <div class="bike-image">
-            <%= image_tag(bike.bike_image) %>
+
+  
+  <div class="sidebar-container-right">
+    <%= render 'layouts/sidebarright' %>
+  </div>
+
+  <div class="sidebar-container-left">
+    <%= render 'layouts/sidebarleft' %>
+  </div>
+
+    <% if @bikes.empty? %>
+      <p><span style="color: white; font-size: 20px">You have no bikes in your garage. Add a bike to get started!</span></p>
+    <% else %>
+      <div class="bikes-container">
+        <% @bikes.each_with_index do |bike| %>
+          <div class="bike-box">
+              <% if bike.bike_image.attached? %>
+                <div class="bike-image">
+                  <%= image_tag(bike.bike_image) %>
+                </div>
+              <% end %>
+              <div class="bike-details">
+                <p>
+                <a href="<%= bike_path(bike) %>"><%= bike.year %> <%= bike.make %> <%= bike.model %> <%= bike.size %></a><br>
+                <strong>Miles:</strong> <%= bike.miles %> <strong>Hours:</strong> <%= bike.hours %>
+                </p>
+              </div>
           </div>
         <% end %>
-        <div class="bike-details">
-          <p>
-            <% if bike.hours >= 30 %>
-              <p style="color: red">Suspension service needed!</p>
-            <% end %>
-          </p>
-          <p>
-            <strong>Year:</strong>
-            <%= bike.year %>
-          </p>
-          <p>
-            <strong>Make:</strong>
-            <%= bike.make %>
-          </p>
-          <p>
-            <strong>Model:</strong>
-            <%= bike.model %>
-          </p>
-          <p>
-            <strong>Size:</strong>
-            <%= bike.size %>
-          </p>
-          <p>
-            <strong>Miles:</strong>
-            <%= bike.miles %>
-          </p>
-          <p>
-            <strong>Hours:</strong>
-            <%= bike.hours %>
-          </p>
-          <%= link_to "View", bike %>
-        </div>
       </div>
     <% end %>
   </div>
+  
+<footer>
+  <%= render 'layouts/footer' %>
+</footer>
 
-
-  <div class="sidebar-container" style="margin-right: 5%;">
-  <h2>Links to service related videos</h2>
-  <ul>
-    <strong>Suspension:</strong>     
-      <ul>
-        <li><a href="#">Video 1</a></li>
-        <li><a href="#">Video 2</a></li>
-        <li><a href="#">Video 3</a></li>
-      </ul>
-      <br>
-    <strong>Drivetrain:</strong>      
-      <ul>
-        <li><a href="#">Video 1</a></li>
-        <li><a href="#">Video 2</a></li>
-        <li><a href="#">Video 3</a></li>
-      </ul>
-      <br>
-    <strong>Wheels:</strong>      
-      <ul>
-        <li><a href="#">Video 1</a></li>
-        <li><a href="#">Video 2</a></li>
-        <li><a href="#">Video 3</a></li>
-      </ul>
-      <br>
-    <strong>Brakes:</strong>      
-      <ul>
-        <li><a href="#">Video 1</a></li>
-        <li><a href="#">Video 2</a></li>
-        <li><a href="#">Video 3</a></li>
-      </ul>
-      <br>
-  </ul>
-</div>
-
-
-</div>
+</body>
+</html> 
 
 

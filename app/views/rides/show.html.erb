@@ -1,67 +1,44 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>zBikeGarage</title>
-
 </head>
-<body>
-  <header>
-    zBikeGarage
-  </header>
-
-  <nav>
-    <ul class="nav-links">
-      <li><%= link_to "Bikes", bikes_path %></li>
-      <li><%= link_to "Add New Bike", new_bike_path %></li>
-      <li><%= link_to "Rides", rides_path %></li>
-      <li><%= link_to "Add New Ride", new_ride_path %></li>
-      <li><%= link_to "Link Strava Rides-coming soon"%></li>
-      <li><%= link_to "Ride Meet Up-coming soon"%></li>
-      <li><%= link_to "Buy/Sell-coming soon" %></li>
-      <% if user_signed_in? %>
-      <li>
-        <%= form_with url: destroy_user_session_path, method: :delete do |form| %>
-          <%= form.submit 'Log out' %>
-        <% end %>
-      </li>
-<% end %>
-    </ul>
-  </nav>
-</header>
 
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
       background-image: url(<%= asset_path "trail.jpg" %>);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
-      width: 80%;
-      margin: 0 auto;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
   </style>
-</head>
-<body>
-  <div class="container">
 
-    <p style="color: green"><%= notice %></p>
+  <body>
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
 
-    <%= render @ride %> <%= link_to "Edit Ride", edit_ride_path(@ride) %> <%= link_to "Destroy Ride", @ride, method: :delete %>
+    <nav>
+      <%= render 'layouts/navbar' %>
+    </nav>
 
-  </div>
-</body>
-</html>
+    <div class="container">
+      <%= render @ride %> 
+      <%= link_to "Edit Ride", edit_ride_path(@ride) %> <br>
+      <%= button_to "Destroy Ride", @ride, method: :delete, style: "border: none; background-color: transparent; color: inherit; cursor: pointer; font-family: Arial; font-size: 17px; text-decoration: underline; text-decoration-color: blue;"%>
+    </div>
 
+    <div class="sidebar-container-right">
+      <%= render 'layouts/sidebarright' %>
+    </div>
+
+    <div class="sidebar-container-left">
+      <%= render 'layouts/sidebarleft' %>
+    </div>
+
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
+
+  </body>
+</html> 

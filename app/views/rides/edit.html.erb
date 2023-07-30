@@ -3,66 +3,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>zBikeGarage</title>
-
 </head>
-<body>
-  <header>
-    zBikeGarage
-  </header>
-
-  <nav>
-    <ul class="nav-links">
-      <li><%= link_to "Bikes", bikes_path %></li>
-      <li><%= link_to "Add New Bike", new_bike_path %></li>
-      <li><%= link_to "Rides", rides_path %></li>
-      <li><%= link_to "Add New Ride", new_ride_path %></li>
-      <li><%= link_to "Link Strava Rides-coming soon"%></li>
-      <li><%= link_to "Ride Meet Up-coming soon"%></li>
-      <li><%= link_to "Buy/Sell-coming soon" %></li>
-      <% if user_signed_in? %>
-      <li>
-        <%= form_with url: destroy_user_session_path, method: :delete do |form| %>
-          <%= form.submit 'Log out' %>
-        <% end %>
-      </li>
-<% end %>
-    </ul>
-  </nav>
-</header>
-  <h1>Edit Ride</h1>
 
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
       background-image: url(<%= asset_path "trail.jpg" %>);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
     }
-    .container {
-      width: 20%;
-      margin: 0 auto;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    
   </style>
-</head>
-<body>
-  <div class="container">
 
-    <%= render "form", ride: @ride %> <%= link_to "Destroy Ride", @ride, method: :delete %>
+  <body>
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
 
-    <br>
-  </div>
-</body>
-</html>
+    <nav>
+      <%= render 'layouts/navbar' %>
+    </nav>
+
+    <div class="outer-box">
+
+      <h1>Edit Ride</h1>
+        <div class="container">
+          <%= render "form", ride: @ride %>
+        <br>
+      </div>
+    
+      <div class="sidebar-container-right">
+        <%= render 'layouts/sidebarright' %>
+      </div>
+
+      <div class="sidebar-container-left">
+        <%= render 'layouts/sidebarleft' %>
+      </div>
+    </div>
+    
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
+
+  </body>
+</html> 
+
+

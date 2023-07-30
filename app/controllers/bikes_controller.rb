@@ -66,6 +66,6 @@ class BikesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bike_params
-      params.require(:bike).permit(:bike_image, :year, :make, :model, :size, :miles, :hours)
+      params.require(:bike).permit(:bike_image, :year, :make, :model, :size, :miles, :hours, :frame_serial_number, :rear_triangle_serial_number, :suspension_hours_30, :suspension_hours_50, :suspension_hours_100, :suspension_hours_200, :count_30, :count_50, :count_100, :count_200, :thirty_hour_alert, :fifty_hour_alert, :hundred_hour_alert, :two_hundred_hour_alert)
     end
 end

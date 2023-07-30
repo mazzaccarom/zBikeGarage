@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_22_041109) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_15_153311) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,6 +49,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_041109) do
     t.decimal "hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "frame_serial_number"
+    t.string "rear_triangle_serial_number"
+    t.integer "suspension_hours_30", default: 0
+    t.integer "suspension_hours_50", default: 0
+    t.integer "suspension_hours_100", default: 0
+    t.integer "suspension_hours_200", default: 0
+    t.integer "count_30", default: 0
+    t.integer "count_50", default: 0
+    t.integer "count_100", default: 0
+    t.integer "count_200", default: 0
+    t.boolean "thirty_hour_alert", default: false
+    t.boolean "fifty_hour_alert", default: false
+    t.boolean "hundred_hour_alert", default: false
+    t.boolean "two_hundred_hour_alert", default: false
+  end
+
+  create_table "parts", force: :cascade do |t|
+    t.string "part_type"
+    t.string "brand"
+    t.string "model"
+    t.integer "year"
+    t.integer "bike_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bike_id"], name: "index_parts_on_bike_id"
   end
 
   create_table "rides", force: :cascade do |t|
@@ -76,5 +101,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_041109) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "parts", "bikes"
   add_foreign_key "rides", "bikes"
 end

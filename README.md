@@ -1,2 +1,10 @@
 # README
-This is my capstone project. It is a web application using ruby on rails. This application tracks bicycle use and alerts the rider when service is needed based on the components on the bicycle. 
+* Ruby version 3.1.3
+
+This is an inventory management system for your bikes. You can add bikes to your garage. Adding components and rides to your bike will generate service notifications for your bike. 
+
+Future features will allow you to link activity tracking applications to automate adding rides. Addtionally, adding components will be automated based on the build kit from the manufacture that will be editable for custom builds. You will be able to track usage of the components when replaced. Technical specifications will be added for easy reference. 
+
+Additional features will include a classified sction, where to ride section, and a meet up section.
+
+

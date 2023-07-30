@@ -1,67 +1,65 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>zBikeGarage</title>
-
 </head>
+
+<style>
+  body {
+    background-image: url(<%= asset_path "trail.jpg" %>);
+  }
+
+  .container {
+    text-align: left;
+  }
+
+  .centered {
+  text-align: center;
+  }
+
+</style>
+
 <body>
   <header>
-    zBikeGarage
+    <%= render 'layouts/header' %>
   </header>
 
   <nav>
-    <ul class="nav-links">
-      <li><%= link_to "Bikes", bikes_path %></li>
-      <li><%= link_to "Add New Bike", new_bike_path %></li>
-      <li><%= link_to "Rides", rides_path %></li>
-      <li><%= link_to "Add New Ride", new_ride_path %></li>
-      <li><%= link_to "Link Strava Rides-coming soon"%></li>
-      <li><%= link_to "Ride Meet Up-coming soon"%></li>
-      <li><%= link_to "Buy/Sell-coming soon" %></li>
-      <% if user_signed_in? %>
-      <li>
-        <%= form_with url: destroy_user_session_path, method: :delete do |form| %>
-          <%= form.submit 'Log out' %>
-        <% end %>
-      </li>
-<% end %>
-    </ul>
+    <%= render 'layouts/navbar' %>
   </nav>
-</header>
-  <title>Rides</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-image: url(<%= asset_path "trail.jpg" %>);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
-      width: 40%;
-      margin: 0 auto;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
 
+  <div class="container">
     <div id="rides">
-      <% @rides.each do |ride| %>
-        <%= render ride %> <%= link_to "Edit Ride", edit_ride_path(ride) %>
+      <div class="centered">
+        <strong>Rides Summary:</strong>
+        <%= @rides.sum(:miles) %> miles <%= @rides.sum(:hours) %> hours
+        <% week_start = Date.current.beginning_of_week %>
+        <% week_end = Date.current.end_of_week %>
+        <% week_rides = @rides.where(date: week_start..week_end) %><br>
+        <strong>Weekly Summary:</strong>
+        Week of <%= week_start.strftime('%m/%d/%Y') %>:
+        <%= week_rides.sum(:miles) %> miles <%= week_rides.sum(:hours) %> hours<br><br>
+      </div>  
+      <% @rides.sort_by(&:date).reverse_each do |ride| %>
+        <%= link_to ride.date, ride %> <strong>Location:</strong><%= ride.location %> <strong>Miles:</strong><%= ride.miles %> <strong>Hours:</strong><%= ride.hours %> <strong>Bike:</strong><%= ride.bike.make %> <%= ride.bike.model %><br>
       <% end %>
     </div>
+
   </div>
+
+  <div class="sidebar-container-right">
+    <%= render 'layouts/sidebarright' %>
+  </div>
+
+  <div class="sidebar-container-left">
+    <%= render 'layouts/sidebarleft' %>
+  </div>
+  
+  <footer>
+    <%= render 'layouts/footer' %>
+  </footer>
+
 </body>
-</html>
+</html> 
